@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
 	private Long id;
@@ -15,9 +19,9 @@ public class User {
 	
 	private String phone;
 	
-	private Date createDate;
+	private LocalDateTime createDate;
 	
-	private Date updateDate;
+	private LocalDateTime updateDate;
 	
-	private Date deleteDate;
+	private LocalDateTime deleteDate;
 }
