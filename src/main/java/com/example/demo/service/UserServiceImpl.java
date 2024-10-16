@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.UserSearchRequest;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserMapper;
 
@@ -23,8 +24,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserById(Long id) {
-		return userMapper.selectUserById(id);
+	public User searchByIdUser(UserSearchRequest userSearchRequest) {
+		return userMapper.searchByIdUser(userSearchRequest);
 	}
 
 }

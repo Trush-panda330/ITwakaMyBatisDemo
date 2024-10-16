@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー情報検索</title>
+</head>
+<body>
+	<h1>ユーザー情報検索</h1>
+	<form th:action="@{/user/search}" th:object="${userSearchRequest}" th:method="post">
+		<div>
+			ID: <input type="text" th:field="*{id}" size="40">
+		</div>
+		<br>
+		<div>
+			<input type="submit" value="検索" style="width: 100px;">
+		</div>
+	</form>
+	<div th:if="${user}">
+		<table th:object="${user}">
+			<tr>
+				<th class="cell_title">名前</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th class="cell_title">住所</th>
+				<td th:text="*{address}"></td>
+			</tr>
+			<tr>
+				<th class="cell_title">電話番号</th>
+				<td th:text="*{phone}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

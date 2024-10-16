@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.dto.UserSearchRequest;
 import com.example.demo.entity.User;
 
 public interface UserService {
@@ -12,7 +13,9 @@ public interface UserService {
 	List<User> selectAllUser();
 	
 	/**
-	 * 指定したIDのユーザーを検索*/
-	User findUserById(Long id);
+	 * @Param userSearchRequest
+	 * @return 検索結果
+	 * */
+	User searchByIdUser(UserSearchRequest userSearchRequest);
 
 }

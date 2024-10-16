@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.dto.UserSearchRequest;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
@@ -29,17 +29,24 @@ public class UserController {
 		return "user/list";
 	}
 
-	@PostMapping("user/list/{id}")
-	public String oneUser(@PathVariable Long id, Model model,
-			RedirectAttributes attributes) {
-		User user = userService.findUserById(id);
-		if (user != null) {
-			model.addAttribute("user", userService.findUserById(id));
-			return "user/user";
-		} else {
-			attributes.addFlashAttribute("msg", "退場データがありません");
-			return "redirect:/list";
-		}
+	
+	@GetMapping("user/search")
+	public String searchUser(Model model) {
+	    model.addAttribute("userSearchRequest", new UserSearchRequest()); // 空の UserSearchRequest をモデルに追加
+	    model.addAttribute("user", new User());  // User オブジェクトも初期化
+	    return "user/search";
+	}
 
+
+	/*ユーザー情報検索
+	 *  @param userSearchRequest リクエストデータ
+	 *  @param Model model
+	 *  @return ユーザー情報一覧画面
+	 *  */
+	@PostMapping("user/search")
+	public String oneUser(@ModelAttribute UserSearchRequest userSearchRequest,  Model model) {
+		User user = userService.searchByIdUser(userSearchRequest);
+			model.addAttribute("user",user);
+			return "user/search";
 	}
 }

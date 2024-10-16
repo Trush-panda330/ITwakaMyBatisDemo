@@ -6,7 +6,7 @@
 			AS updateDate, delete_date AS deleteDate FROM User 
 <!--		select * from user-->
 	</select>
-	<select id="selectById"
+	<select id="searchByIdUser"
 		resultType="com.example.demo.entity.User">
 		select * from user where id = #{id}
 	</select>
